@@ -1,12 +1,5 @@
 <template>
-<div class='home'>
-  我是home页面
-</div>
+  我是首页
+  <div style="height: 1200px;">
+  </div>
 </template>
-<script setup name='Home'>
-
-</script>
-
-<style>
-
-</style>
