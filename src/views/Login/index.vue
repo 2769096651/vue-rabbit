@@ -28,7 +28,6 @@ const rules = {
   agree: [
     {
       validator: (rule, value, callback) => {
-        console.log(value)
         //自定义校验逻辑
         //勾选就通过 不勾选就不通过
         if(value){
@@ -49,13 +48,12 @@ const doLogin = ()=>{
     console.log(valid)
     //以valid作为判断条件 如果通过检验才执行登录逻辑
     if(valid){
-     await UserStore.getUserInfo({account,password})
+      await UserStore.getUserInfo({account,password})
       //1、提示用户
       ElMessage({type:'success',message:'登录成功'})
       //2、跳转用户
       router.replace({
         path:'/',
-
       })
     }
   })
