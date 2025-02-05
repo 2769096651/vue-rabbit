@@ -1,12 +1,18 @@
 <script setup>
 import {ref} from 'vue'
+import {loginAPI} from '@/apis/user'
+
+import { ElMessage } from 'element-plus'
+import 'element-plus/theme-chalk/el-message.css'
+
+import { useRouter } from 'vue-router'
 
 //表单校验(账号名+密码)
 //准备表单对象
 const form = ref({
-  account: '',
-  password: '',
-  agree: true
+  account: '13012345741',
+  password: '123456',
+  agree: false
 })
 //
 const rules = {
@@ -34,12 +40,22 @@ const rules = {
 }
 
 const formRef = ref(null)
+const router = useRouter()
 const doLogin = ()=>{
-  formRef.value.validate((valid)=>{
+  const {account,password} = form.value
+  formRef.value.validate(async(valid)=>{
     console.log(valid)
     //以valid作为判断条件 如果通过检验才执行登录逻辑
     if(valid){
+      const res = await loginAPI({account,password})
       
+      //1、提示用户
+      ElMessage({type:'success',message:'登录成功'})
+      //2、跳转用户
+      router.replace({
+        path:'/',
+
+      })
     }
   })
 }
