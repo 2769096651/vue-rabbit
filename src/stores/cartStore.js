@@ -1,7 +1,7 @@
 //封装购物车模块
 import { defineStore } from "pinia";
 import { computed, ref } from "vue";
-import { useUserStore } from "./user";
+import { useUserStore } from "./userStore";
 import {insertCartAPI,findNewCartListAPI,delCartAPI} from '@/apis/cart'
 
 
@@ -54,6 +54,10 @@ const delCart = async(skuId)=>{
   }
 }
 
+//清除购物车
+const clearCart = ()=>{
+  cartList.value = []
+}
 
 
 //单选功能
@@ -94,7 +98,8 @@ return {
   allCheck,
   isAll,
   selectedCount,
-  selectedPrice
+  selectedPrice,
+  clearCart
 }
 },
 {
