@@ -45,7 +45,6 @@ const addCart = () => {
   }else{
     //规则没有选择 提示用户
     ElMessage.warning('请选择规则')
-
   }
 }
 </script>

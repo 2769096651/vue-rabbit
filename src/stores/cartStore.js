@@ -7,7 +7,7 @@ import {insertCartAPI,findNewCartListAPI,delCartAPI} from '@/apis/cart'
 
 export const useCartStore =   defineStore('cart',()=>{
   const userStore = useUserStore()
-  const isLogin = computed(()=>useUserStore.userInfo.token)
+  const isLogin = computed(()=>userStore.userInfo.token)
 //1.定义state - cartList
 const cartList = ref([])
 
@@ -20,7 +20,7 @@ const updateNewList = async()=>{
 //2/定义action - addCart
 const addCart = async (goods)=>{
   const {skuId,count} = goods
-  if(isLogin){
+  if(isLogin.value){
     //登录之后加入购物车逻辑
    await insertCartAPI({skuId,count})
    updateNewList()
@@ -42,7 +42,7 @@ item.count++
 
 //删除购物车
 const delCart = async(skuId)=>{
-  if(isLogin){
+  if(isLogin.value){
     await delCartAPI([skuId])
     updateNewList()
   }else{
@@ -99,7 +99,8 @@ return {
   isAll,
   selectedCount,
   selectedPrice,
-  clearCart
+  clearCart,
+  updateNewList
 }
 },
 {
